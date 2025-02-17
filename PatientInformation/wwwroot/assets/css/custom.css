@@ -1,0 +1,11 @@
+﻿#mobile-number-label {
+        position: absolute;
+        color: #3c4252; 
+        padding-top: 7px; 
+        padding-left: 7px;
+        padding-right: 10px;
+}
+
+#mobile-number-input{
+    padding: 0 38px !important;
+}

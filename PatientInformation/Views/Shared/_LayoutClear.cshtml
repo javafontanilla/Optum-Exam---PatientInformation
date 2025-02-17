@@ -1,0 +1,103 @@
+﻿@using Microsoft.AspNetCore.Http;
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Java Web App</title>
+    <link rel="icon" href="~/assets/images/favicon-32x32.png" type="image/png" />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+
+    <!--favicon-->
+    <link rel="stylesheet" href="~/assets/icon-stock/icon.css">
+    <link rel="icon" href="~/assets/images/favicon-32x32.png" type="image/png" />
+    <!--Data Tables -->
+    <link href="~/assets/plugins/datatable/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/plugins/datatable/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css">
+    <!--plugins-->
+    <link href="~/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+    <link href="~/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
+    <link href="~/assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+    <link href="~/assets/plugins/smart-wizard/css/smart_wizard_all.min.css" rel="stylesheet" type="text/css" />
+    <!--styles2-->
+    <link rel="stylesheet" href="~/assets/css/styles2.css" />
+    <!-- loader-->
+    <link href="~/assets/css/pace.min.css" rel="stylesheet" />
+    <script src="~/assets/js/pace.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
+    <!-- Icons CSS -->
+    <link rel="stylesheet" href="~/assets/css/icons.css" />
+    <!-- App CSS -->
+    <link rel="stylesheet" href="~/assets/css/app.css" />
+    <link rel="stylesheet" href="~/assets/css/dark-sidebar.css" />
+    <link rel="stylesheet" href="~/assets/css/dark-theme.css" />
+
+    @*<link rel="stylesheet" href="~/assets/icon-stock/demo-files/demo.css">*@
+    <link rel="stylesheet" href="~/assets/icon-stock/icon.css">
+
+    <!-- Custom Css-->
+    <link rel="stylesheet" href="~/assets/css/custom.css" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet" type="text/css" />
+    <!--<link href="~/assets/css/dataTables.fontAwesome.css" rel="stylesheet" />-->
+
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+</head>
+
+
+<body>
+    
+    
+    <!-- JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="~/assets/js/jquery.js"></script>
+    <script src="~/assets/js/popper.min.js"></script>
+
+    <script src="~/assets/plugins/datepicker/js/jquery-3.6.0.js"></script>
+    <script src="~/assets/plugins/datepicker/js/jquery-ui.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <!--plugins-->
+    <script src="~/assets/plugins/simplebar/js/simplebar.min.js"></script>
+    <script src="~/assets/plugins/metismenu/js/metisMenu.min.js"></script>
+    <script src="~/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+    <script src="~/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+    <!-- App JS -->
+    <script src="~/assets/js/app.js"></script>
+
+    <script src="~/assets/js/jquery.validate.min.js"></script>
+    <script src="~/assets/js/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/assets/js/jquery.ph-locations-v1.0.0.js"></script>
+
+    <!-- Dropzone JS -->
+    <script src="~/assets/js/dropzone.min.js"></script>
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="https://cdn.tiny.cloud/1/vdqx2klew412up5bcbpwivg1th6nrh3murc6maz8bukgos4v/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+
+    @RenderSection("styles", false)
+
+
+    @{
+        var controller = ViewContext.RouteData.Values["Controller"];
+        var action = ViewContext.RouteData.Values["Action"];
+    }
+
+   
+
+    @RenderSection("scripts", false)
+
+</body>
+
+
+</html>

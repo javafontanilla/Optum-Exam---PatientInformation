@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35728.132 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientInformation", "PatientInformation\PatientInformation.csproj", "{FE71D7A3-4261-4D91-9887-0D6D53222CDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientInformationHelper", "PatientInformationHelper\PatientInformationHelper.csproj", "{2BB7A07E-8542-43B7-98FB-B7BD5DB19F05}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE71D7A3-4261-4D91-9887-0D6D53222CDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE71D7A3-4261-4D91-9887-0D6D53222CDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE71D7A3-4261-4D91-9887-0D6D53222CDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE71D7A3-4261-4D91-9887-0D6D53222CDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BB7A07E-8542-43B7-98FB-B7BD5DB19F05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BB7A07E-8542-43B7-98FB-B7BD5DB19F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BB7A07E-8542-43B7-98FB-B7BD5DB19F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BB7A07E-8542-43B7-98FB-B7BD5DB19F05}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

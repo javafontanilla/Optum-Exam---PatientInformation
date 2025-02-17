@@ -1,0 +1,37 @@
+﻿<!--navigation-->
+<div class="nav-container">
+	<div class="mobile-topbar-header">
+	
+		<a href="javascript:;" class="toggle-btn ml-auto">
+			<i class="bx bx-menu"></i>
+		</a>
+	</div>
+	<nav class="topbar-nav">
+		<ul class="metismenu" id="menu">
+			<li>
+				<a class="@ViewBag.HomeIndex" id="HomeIndex" asp-action="Index" asp-controller="Home">
+					<div class="parent-icon icon-color-3">
+						<i class="bx bx-home-alt"></i>
+					</div>
+					<div class="menu-title">Home</div>
+				</a>
+			</li>
+			<li>
+				<a class="@ViewBag.UserIndex" id="UserIndex" asp-action="Index" asp-controller="User">
+					<div class="parent-icon icon-color-3">
+						<i class="fas fa-users"></i>
+					</div>
+					<div class="menu-title">User Access Management</div>
+				</a>
+			</li>
+		</ul>
+	</nav>
+</div>
+@section scripts {
+	<script>
+		$(document).ready(function () {
+			$('#@ViewBag.MenuID').addClass("activeMenu");
+		});
+	</script>
+}
+<!--end navigation-->

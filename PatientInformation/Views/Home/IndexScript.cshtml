@@ -1,0 +1,246 @@
+﻿<script>
+    $(document).ready(function () {
+       var tbl = $('#myTable').DataTable({
+            "autoWidth": true,
+            "scrollY": "auto",
+            "scrollX": true,
+            "paging": true
+        });   
+
+
+        $('.fileUpload').click(function () {
+            let fileType = $(this).attr('fileUploadType');
+            $('#fileType').val(fileType);
+            $('#fileInput').click();
+
+        });
+
+        $('#fileInput').change(function () {
+            var fileInput = $("#fileInput");
+            var file = fileInput[0].files[0];
+
+            if (file) {
+                var name = $("#fileType").val();
+                var input = document.getElementById('fileInput');
+                var file = input.files[0];
+
+                var formData = new FormData();
+                formData.append('file', file);
+                formData.append('fileType', name);
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "Do you want to upload " + name + "?",
+                    icon: "info",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "No",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('fileInput').value = ''
+                        spinnerOverlay.style.display = 'flex';
+                        $.ajax({
+                            url: '/Customer/FileUpload',
+                            type: 'POST',
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function (data) {
+                                spinnerOverlay.style.display = 'none';
+                                if (data.statusCode == 200) {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Success',
+                                        text: "File uploaded successfully!",
+                                    }).then((result) => {
+                                        if (result.isConfirmed || result.value) {
+                                            loadData();
+                                        }
+                                    });
+                                }
+                                else {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Error',
+                                        text: data.message
+                                    });
+                                }
+                            },
+                            error: function (error) {
+                                spinnerOverlay.style.display = 'none';
+                                console.log(error.responseText);
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: "Error in file upload.",
+                                });
+                            }
+                        });                        
+                    }
+                    else {
+                        document.getElementById('fileInput').value = '';
+                        return;
+                    }
+                });
+            } else {
+                spinnerOverlay.style.display = 'none';
+                // No file selected, use SweetAlert error
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Please select a file before proceeding.',
+                });
+            }
+        });
+
+        $('.open-add-modal').on('click', function() {
+            clearModal();
+            $('#customerModal').modal('show');
+        });
+
+        $(document).on('click', '.open-edit-modal', function () {
+            let customerCd = $(this).attr('customerCd');
+            // Make an Ajax request to fetch additional data using the dCode
+            clearModal();
+            $.ajax({
+                url: '/Customer/GetCustomerDetails?CustomerCd=' + customerCd,
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    // Update modal input fields with data
+                    $('#DCode').val(data.dCode);
+                    $('#CustomerCd').val(data.customerCd);
+                    $('#CustomerName').val(data.customerName);
+                    $('#UniqueAccount').val(data.uniqueAccount);
+                    $('#Address').val(data.address);
+                },
+                error: function (error) {
+                    console.error('Error fetching customer details:', error);
+                }
+            });
+
+            // Show the modal
+            $('#customerModal').modal('show');
+        });
+
+        function clearModal() {
+            $('#DCode').val('');
+            $('#CustomerCd').val('');
+            $('#CustomerName').val('');
+            $('#UniqueAccount').val('');
+            $('#Address').val('');
+        }
+
+        // Save changes function
+        $('#saveCustomerMaster').on('click', function() {
+            // Confirm with SweetAlert before saving changes
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Do you want to save changes?",
+                icon: "info",
+                showCancelButton: true,
+                confirmButtonText: "Save",
+                cancelButtonText: "Cancel",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                        spinnerOverlay.style.display = 'flex';
+                        // Extract data from the modal
+                        var dCode = $('#DCode').val();
+                        var customerCd = $('#CustomerCd').val();
+                        var customerName = $('#CustomerName').val();
+                        var uniqueAccount = $('#UniqueAccount').val();
+                        var address = $('#Address').val();
+
+                        // Make an Ajax request to save changes
+                        $.ajax({
+                            url: '/Customer/SaveCustomerMaster',
+                            method: 'POST',
+                            data: {
+                                dCode: dCode,
+                                customerCd: customerCd,
+                                customerName: customerName,
+                                uniqueAccount: uniqueAccount,
+                                address: address
+                            },
+                            success: function (response) {
+                                spinnerOverlay.style.display = 'none';
+                                // Handle success response
+                                Swal.fire({
+                                    title: "Changes saved successfully!",
+                                    icon: "success",
+                                }).then((result) => {
+                                    // Close the modal
+                                    $('#customerModal').modal('hide');
+                                    clearModal();
+                                    loadData();
+                                });
+                                
+                            },
+                            error: function (error) {
+                                spinnerOverlay.style.display = 'none';
+                                console.error('Error saving changes:', error);
+                                Swal.fire({
+                                    title: "Error saving changes. Please try again!",
+                                    icon: "error",
+                                });
+                            }
+                        });
+                    }
+                });
+        });
+
+        function loadData() {
+            tbl = $('#myTable').DataTable({
+                "destroy": true,
+                "lengthChange": false,
+                "autoWidth": true,
+                "scrollY": "auto",
+                "scrollX": true,
+                "paging": true,
+                "ordering": true, // Enable ordering on the server side
+                "serverSide": true, // Enable server-side processing
+                preDrawCallback: function (settings) {
+                    tblspinner = new Spinner().spin(document.getElementById('tblspinner-container'));
+                    spinnerOverlay.style.display = 'flex';
+                },
+                drawCallback: function (settings) {
+                    tblspinner.stop(); // Stop the spinner when the data is loaded
+                    spinnerOverlay.style.display = 'none';
+                },
+                "ajax": {
+                    "url": "/Customer/GetCustomerMaster", // Adjust the URL to match your controller route
+                    "dataType": "json",
+                    "dataSrc": "data", // Adjust the property name that contains the data on the server response
+                    "type": "POST", // Use POST method for server-side processing
+                    "data": function (data) {
+                        // Additional parameters to be sent to the server
+                        // You can add more parameters as needed
+                        data.page = data.start / data.length + 1; // Calculate the page number
+                        data.searchTerm = data.search.value; // Extract the search term
+                        // Add more parameters as needed
+                    }
+                },
+                "columns": [
+                    { "data": "dCode" },
+                    { "data": "customerCd" },
+                    { "data": "customerName" },
+                    { "data": "uniqueAccount" },
+                    { "data": "address" }
+                ],
+                "language": {
+                    "info": "Page _PAGE_ of _PAGES_ - Showing _END_ out of _TOTAL_ Items",
+                    "paginate": {
+                        "previous": "Previous"
+                    }
+                },
+                "bInfo": true
+            });
+        }
+
+        loadData();
+
+    });
+</script>
+
+
+

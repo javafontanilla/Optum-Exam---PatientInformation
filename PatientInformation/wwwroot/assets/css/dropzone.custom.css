@@ -1,0 +1,59 @@
+﻿.dropzone-tiny-modal {
+    border: none;
+    padding: 0px 0px !important;
+    height: 200px !important;
+    width: 100% !important;
+    min-height: 200px !important;
+}
+
+.upload-prompt {
+    width: 80px;
+    height: 63.7px;
+    margin-left: 80px;
+}
+
+.dz-message {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    display: none;
+}
+
+.dropzone .dz-preview {
+    left: 0px !important;
+    height: 100px !important;
+    min-height: 100px !important;
+}
+
+    .dropzone .dz-preview .dz-image {
+        height: 70px !important;
+    }
+
+.dz-modal-message {
+    font-size: 16px !important;
+    margin-bottom: 0px !important;
+    margin: 23px 20px 23px 60px;
+}
+
+.dz-modal-warning {
+    color: red;
+}
+
+.dz-select-btn {
+    width: 200px !important;
+    height: 50px !important;
+    font-family: OpenSans;
+    font-size: 16px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #e81d2c;
+}
+
+.dz-upload-btn {
+}
+
+.dz-cancel-btn {
+}

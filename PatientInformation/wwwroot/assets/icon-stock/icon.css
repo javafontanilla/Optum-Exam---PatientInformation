@@ -1,0 +1,67 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?ldugb2');
+  src:  url('fonts/icomoon.eot?ldugb2#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?ldugb2') format('truetype'),
+    url('fonts/icomoon.woff?ldugb2') format('woff'),
+    url('fonts/icomoon.svg?ldugb2#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-unmask:before {
+    content: "\e90e";
+    font-size: 0.594rem;
+    color: #5f5f5f;
+}
+.icon-mask:before {
+    content: "\e90f";
+    font-size: 0.650rem;
+    color: #5f5f5f;
+}
+.icon-line-consumer-review---black:before {
+  content: "\e910";
+}
+.icon-line-manage-product--black:before {
+  content: "\e911";
+}
+.icon-line-orders-and-review--black:before {
+  content: "\e912";
+}
+.icon-line-build---black:before {
+  content: "\e913";
+}
+.icon-line-fs---black:before {
+  content: "\e914";
+}
+.icon-line-home---black:before {
+  content: "\e915";
+}
+.icon-line-order---black:before {
+  content: "\e916";
+}
+.icon-line-promote---black:before {
+  content: "\e917";
+}
+.icon-line-store---black:before {
+  content: "\e918";
+}
+.icon-line-system---black:before {
+  content: "\e919";
+}
